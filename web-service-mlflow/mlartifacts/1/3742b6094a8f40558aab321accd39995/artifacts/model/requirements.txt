@@ -1,0 +1,6 @@
+mlflow
+cloudpickle==2.2.0
+pathlib==1.0.1
+psutil==5.9.0
+scikit-learn==1.2.0
+typing-extensions==4.4.0
