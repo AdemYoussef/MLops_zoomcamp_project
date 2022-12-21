@@ -12,7 +12,14 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
+from prefect import task,flow,get_run_logger
+from prefect.context import get_run_context
+
+from prefect.deployments import Deployment
+from prefect.orion.schemas.schedules import CronSchedule
 
 
 
@@ -55,18 +62,7 @@ def load_model(run_id):
     model = mlflow.pyfunc.load_model(logged_model)
     return model
 
-
-def apply_model(input_file, run_id, output_file):
-
-    print(f'reading the data from {input_file}')
-    df = read_dataframe(input_file)
-    dicts = prepare_dictionaries(df)
-
-    print(f'loading the model with the RUN_ID = {run_id}')
-    model = load_model(run_id)
-    print(f'model runing...')
-    y_pred = model.predict(dicts)
-    print(f'saving the model to {output_file}')
+def save_results(df, y_pred, run_id, output_file):
     df_result = pd.DataFrame()
     df_result['ride_id'] = df['ride_id']
     df_result['lpep_pickup_datetime'] = df['lpep_pickup_datetime']
@@ -76,8 +72,56 @@ def apply_model(input_file, run_id, output_file):
     df_result['predicted_duration'] = y_pred
     df_result['diff'] = df_result['actual_duration'] - df_result['predicted_duration']
     df_result['model_version'] = run_id
-    
+
     df_result.to_parquet(output_file, index=False)
+
+@task
+def apply_model(input_file, run_id, output_file):
+
+    logger = get_run_logger()
+    logger.info(f'reading the data from {input_file}')
+    df = read_dataframe(input_file)
+    dicts = prepare_dictionaries(df)
+
+    logger.info(f'loading the model with the RUN_ID = {run_id}')
+    model = load_model(run_id)
+    logger.info(f'model runing...')
+    y_pred = model.predict(dicts)
+    
+    save_results(df, y_pred, run_id, output_file)
+    return output_file
+
+def get_paths(run_date, taxi_type):
+    prev_month = run_date - relativedelta(months=1)
+    year = prev_month.year
+    month = prev_month.month 
+
+    input_file = f'/home/adem/MLops_zoomcamp_project/data/{taxi_type}_tripdata_{year:04d}-{month:02d}.parquet'
+    output_file = f'/home/adem/MLops_zoomcamp_project/web-service-mlflow/batch/output/{taxi_type}/{year:04d}-{month:02d}.parquet'
+
+    return input_file, output_file
+
+@flow
+def ride_duration_prediction(
+        taxi_type: str,
+        run_id: str,
+        run_date: datetime = None):
+
+    if run_date is None:
+        ctx = get_run_context()
+        run_date = ctx.flow_run.expected_start_time
+    
+    
+    input_file, output_file = get_paths(run_date, taxi_type)
+
+    
+
+    apply_model(
+        input_file=input_file, 
+        run_id=run_id, 
+        output_file=output_file
+        )
+
 
 def run():
 
@@ -96,21 +140,31 @@ def run():
     model = mlflow.pyfunc.load_model(logged_model)
 
 
+    ride_duration_prediction(
+        taxi_type=taxi_type,
+        run_id=RUN_ID,
+        run_date=datetime(year=year, month=month, day=1)
+    )
 
+    deployment = Deployment.build_from_flow(
+    flow=ride_duration_prediction,
+    name="ride_duration_prediction",
+    parameters={
+        "taxi_type": "green",
+        "run_id": "3742b6094a8f40558aab321accd39995",
+    },
+    schedule=CronSchedule(cron="0 3 2 * *"), #at 3AM on the day of month 2, visit contab guru to test
+    work_queue_name="batch_ride_duration_prediction",
+    )
+    deployment.apply()
 
     
 
-    input_file = f'/home/adem/MLops_zoomcamp_project/web-service-mlflow/data/{taxi_type}_tripdata_{year:04d}-{month:02d}.parquet'
-    output_file = f'/home/adem/MLops_zoomcamp_project/web-service-mlflow/batch/output/{taxi_type}/{year:04d}-{month:02d}.parquet'
-
-    apply_model(
-        input_file=input_file, 
-        run_id=RUN_ID, 
-        output_file=output_file
-        )
+    
 
 if __name__ == '__main__':
     run()
+    #python score.py green 2021 4 3742b6094a8f40558aab321accd39995
 
 
 

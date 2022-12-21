@@ -8,6 +8,10 @@ scikit-learn = "==1.0.2"
 flask = "*"
 gunicorn = "*"
 mlflow = "*"
+prefect = "==2.3.1"
+pandas = "*"
+boto3 = "*"
+pyarrow = "*"
 
 [dev-packages]
 requests = "*"
