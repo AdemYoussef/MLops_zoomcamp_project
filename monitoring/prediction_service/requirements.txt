@@ -1,0 +1,10 @@
+scikit-learn==1.2.0
+dataclasses
+Flask
+pandas
+Werkzeug
+requests
+prometheus_client~=0.11.0
+pyyaml
+evidently
+pymongo
