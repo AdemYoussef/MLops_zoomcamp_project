@@ -8,7 +8,7 @@ Link to the full Youtube list [Here](https://www.youtube.com/playlist?list=PL3Mm
 ## READ THIS NOTE FIRST
 
 Some of the tutos in this project are made with AWS applications, and I highly recommend getting an AWS account with around 30 to 40$ subscription to be able to re-do **Exactly** what was taught in this course, but you can for sure use other cloud providers such as Microsft Azure or GCP.
-For me I couldn't get access to AWS resources, so I went for Azure, that's why i wasn't able to complete the courses fully
+For me I couldn't get access to AWS resources, so I went for Azure, that's why i wasn't able to complete the course fully :pensive:
 
 ## About the Business problem
 
@@ -39,4 +39,4 @@ An Xgboost linear regression model (details about the params in the `model_train
 For me, this was really worth the time and effort spent because I'm in my early career as a Data Scientist and I highly recommend putting in, the time and effort in doing it.
 And even, if you are already familiar with MLops, you can still check out some parts of this project as it really dives deep into some advanced concepts with very well explanations (especially the best practice part)
 
-If you have any questions, you can freely message me on [LinkIdin](https://www.linkedin.com/in/adem-youssef-277019176/)
+If you have any questions, you can freely message me on [Linkedin](https://www.linkedin.com/in/adem-youssef-277019176/)
