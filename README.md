@@ -2,6 +2,7 @@
 This is a follow-along practice MLops project with the goal of getting started and familiarized with The basics of `Machine Learning Operations`
 
 This project was presented and delivered by [DataTalksClub](https://github.com/DataTalksClub/mlops-zoomcamp) (make sure to join Slack for the live Camps and the upcoming events / tutos)
+
 Link to the full Youtube list [Here](https://www.youtube.com/playlist?list=PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK)
 
 ## READ THIS NOTE FIRST
