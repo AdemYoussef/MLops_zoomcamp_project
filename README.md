@@ -15,7 +15,8 @@ For me I couldn't get access to AWS resources, so I went for Azure, that's why i
 We have data records in `parquet file format` offered by the **NYC Taxi & Limousine Commission** which contains the **TLC Trip Record** which is essentially the data of a taxi ride from a point **A** to a point **B** in Newyork city with 17 features and the ***goal is to predict the duration of the ride requested by a new client***.
 - Data can be found [Here](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
-An Xgboost linear regression model (details about the params in the `model_training.py` )
+- Model used:
+    An Xgboost linear regression model (details about the params in the `model_training.py` )
 
 
 ## Project Modules 
