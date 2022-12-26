@@ -26,7 +26,8 @@ We have data records in `parquet file format` offered by the **NYC Taxi & Limous
 - Workflow orchestration with `Prefect2` 
 - Model Monitoring with `Evidently` (Model performance & report generation)
 - Near-live Data drift Detection with `Evidently, Prometheus & MongoDB`
-- Testing / Test integration/ code quality (`COMING SOON...`)
+- Testing / Test integration (`COMING SOON...`)
+- Code quality (`COMING SOON...`)
 
 ## Tools
 
