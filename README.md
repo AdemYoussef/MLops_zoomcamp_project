@@ -25,20 +25,20 @@ We have data records in `parquet file format` offered by the **NYC Taxi & Limous
 - Model Deployment with `Flask` (basic Flask application)
 - Workflow orchestration with `Prefect2` 
 - Model Monitoring with `Evidently` (Model performance & report generation)
-- Near-live Data drift Detection with `Evidently, Prometheus & MongoDB`
+- Near-live Data drift Detection & Vizualisation with `Evidently, Prometheus, Grafana & MongoDB`
 - Testing / Test integration (`COMING SOON...`)
 - Code quality (`COMING SOON...`)
 
-## Tools
+## Tools & Environement
 
 - Python==3.9
 - Docker & Docker-compose
-- IDE==VS code (VS code Remote ssh Extention)
+- IDE== VS code (VS code Remote ssh Extention)
 - Azure VM (Memory optimized family, trust me, your PC will thank you for this)
 
 ## Project personal outcome/ Feedback
 
-For me, this was really worth the time and effort spent because I'm in my early career as a Data Scientist and I highly recommend putting in, the time and effort in doing it.
-And even, if you are already familiar with MLops, you can still check out some parts of this project as it really dives deep into some advanced concepts with very well explanations (especially the best practice part)
+For me, this was really worth the time and effort because I'm in my early career as a Data Scientist and I highly recommend putting in, the time and effort in doing it to grow your skills.
+And even, if you are already familiar with `**MLOps**`, you can still check out some parts of this project as it really **dives deep** into some **advanced concepts** with very well explanations (especially the **best practice part**: code quality, linters, AWS (Kinesis, Lambda, S3....), Terraform ...)
 
 If you have any questions, you can freely message me on [Linkedin](https://www.linkedin.com/in/adem-youssef-277019176/)
