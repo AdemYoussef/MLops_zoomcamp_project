@@ -39,6 +39,6 @@ We have data records in `parquet file format` offered by the **NYC Taxi & Limous
 ## Project personal outcome/ Feedback
 
 For me, this was really worth the time and effort because I'm in my early career as a Data Scientist and I highly recommend putting in, the time and effort in doing it to grow your skills.
-And even, if you are already familiar with `**MLOps**`, you can still check out some parts of this project as it really **dives deep** into some **advanced concepts** with very well explanations (especially the **best practice part**: code quality, linters, AWS (Kinesis, Lambda, S3....),GitHub Actions, Terraform ...)
+And even, if you are already familiar with **`MLOps`**, you can still check out some parts of this project as it really **dives deep** into some **advanced concepts** with very well explanations (especially the **best practice part**: code quality, linters, AWS (Kinesis, Lambda, S3....),GitHub Actions, Terraform ...)
 
 If you have any questions, you can freely message me on [Linkedin](https://www.linkedin.com/in/adem-youssef-277019176/)
